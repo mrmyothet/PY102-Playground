@@ -1,8 +1,7 @@
 name: Autograde
 
 on:
-  pull_request:
-    types: [opened, synchronize, reopened]
+  push:
     paths:
       - "submissions/**"
       - "autograder/**"
@@ -19,7 +18,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # needed to diff against base branch for PR
+          fetch-depth: 0 # needed to diff against base branch for PR
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -55,4 +54,3 @@ jobs:
           else
             echo "_No autograder_results.json found._" >> $GITHUB_STEP_SUMMARY
           fi
-        
