@@ -17,14 +17,10 @@ class MMDT:
     def generateLogin(self, username: str) -> str:
         random_numbers = ""
 
-        # randomNumber = random.randint(0,999)
-        # threeDigitRandomNumber = f"{randomNumber:03d}"
-        # return f"{username}{threeDigitRandomNumber}"
+        random_number = random.randint(0, 999)
+        random_number = f"{random_number:03d}"
 
-        for _ in range(3):
-            random_numbers += str(random.randint(0, 9))
-
-        return username + random_numbers
+        return username + random_number
 
     def is_empty(self) -> bool:
         return len(self.requests) == 0
