@@ -21,7 +21,7 @@ assert first_non_repeating("aabbcc") == "a#b#c#"
 assert first_non_repeating("abc") == "aaa"
 assert first_non_repeating("") == ""
 assert first_non_repeating("zz") == "z#"
-# assert first_non_repeating("abadbc") == "aabbdd"
+assert first_non_repeating("abadbc") == "aabbdd"
 
 assert hot_potato(["A", "B", "C", "D"], 2) == "A"
 assert hot_potato(["A", "B", "C", "D"], 1) == "A"
