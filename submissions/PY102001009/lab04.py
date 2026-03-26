@@ -146,10 +146,15 @@ def find_py_files(root: TreeNode) -> list[str]:
     root: the TreeNode returned from build_submission_tree
     """
     py_files_lst = []
+    folder_path = ""
 
     for node_value in preorder(root):
+
+        if node_value.startswith("PY102"):
+            folder_path = node_value
+
         if node_value.endswith(".py"):
-            py_files_lst.append(node_value)
+            py_files_lst.append(f"{folder_path}/{node_value}")
 
     return py_files_lst
 
@@ -186,14 +191,14 @@ def test_find_py_files():
     root = build_submission_tree("submissions", "PY102001009", "PY102001012")
     py_files = find_py_files(root)
     expected_files = [
-        "lab00.py",
-        "lab01.py",
-        "lab02.py",
-        "lab03.py",
-        "lab00.py",
-        "lab01.py",
-        "lab02.py",
-        "lab03.py",
+        "PY102001009/lab00.py",
+        "PY102001009/lab01.py",
+        "PY102001009/lab02.py",
+        "PY102001009/lab03.py",
+        "PY102001012/lab00.py",
+        "PY102001012/lab01.py",
+        "PY102001012/lab02.py",
+        "PY102001012/lab03.py",
     ]
 
     print()
@@ -215,8 +220,8 @@ def main() -> None:
     root_node = build_submission_tree("submissions", "PY102001009", "PY102001012")
 
     # print("=" * 100)
-    print("print_all_nodes")
-    print_all_nodes(root_node)
+    # print("print_all_nodes")
+    # print_all_nodes(root_node)
     # print("=" * 100)
 
     test_print_all_nodes()
