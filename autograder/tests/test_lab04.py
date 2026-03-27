@@ -18,11 +18,12 @@ def load_lab04():
     spec.loader.exec_module(module)
     return module
 
+
 @pytest.mark.points(8)
 def test_q1_build_submission_tree():
     lab04 = load_lab04()
 
-    root = lab04.build_submission_tree("submissions", "PY102001001", "PY102001002")
+    root = lab04.build_submission_tree("submissions", "PY102001009", "PY102001002")
 
     assert root is not None
     assert root.value == "submissions"
@@ -48,13 +49,12 @@ def test_q1_build_submission_tree():
     assert count >= 2
 
 
-
 @pytest.mark.points(7)
 def test_q2_print_all_nodes(capsys):
     lab04 = load_lab04()
 
     base_path = "submissions"
-    root = lab04.build_submission_tree(base_path, "PY102001001", "PY102001002")
+    root = lab04.build_submission_tree(base_path, "PY102001009", "PY102001002")
 
     lab04.print_all_nodes(root)
     printed = [ln.strip() for ln in capsys.readouterr().out.splitlines() if ln.strip()]
@@ -70,7 +70,7 @@ def test_q3_find_py_files():
     lab04 = load_lab04()
 
     base_path = "submissions"
-    root = lab04.build_submission_tree(base_path, "PY102001001", "PY102001002")
+    root = lab04.build_submission_tree(base_path, "PY102001009", "PY102001002")
 
     result = lab04.find_py_files(root)
 
