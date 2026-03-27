@@ -87,7 +87,8 @@ def is_valid_student_id(student_id: str) -> bool:
 
 def get_changed_files(base_ref: str) -> List[str]:
     run(["git", "fetch", "origin", base_ref])
-    diff = run(["git", "diff", "--name-only", f"origin/{base_ref}...HEAD"])
+    # diff = run(["git", "diff", "--name-only", f"origin/{base_ref}...HEAD"])
+    diff = run(["git", "diff", "--name-only"])
     return [line for line in diff.splitlines() if line.strip()]
 
 
