@@ -22,8 +22,16 @@ MIN_ID = 0
 MAX_ID = 44
 
 # Allowed lab filenames
-ALLOWED_LABS = {"lab00.py", "lab01.py", "lab02.py", "lab03.py", 
-                "lab04.py", "lab05.py", "lab06.py", "lab07.py"}
+ALLOWED_LABS = {
+    "lab00.py",
+    "lab01.py",
+    "lab02.py",
+    "lab03.py",
+    "lab04.py",
+    "lab05.py",
+    "lab06.py",
+    "lab07.py",
+}
 
 TZ = ZoneInfo("America/Chicago")
 LAB_DEADLINES = {
@@ -50,9 +58,10 @@ LAB_TO_TEST = {
 
 # Late policy
 GRACE_DAYS = 2
-LATE_PENALTY_POINTS = 6      
+LATE_PENALTY_POINTS = 6
 ZERO_AFTER_DAYS = 7
-LAB_MAX_POINTS = 20 
+LAB_MAX_POINTS = 20
+
 
 def run(cmd: List[str]) -> str:
     """Run a command and return stdout; exit on error."""
@@ -81,9 +90,11 @@ def get_changed_files(base_ref: str) -> List[str]:
     diff = run(["git", "diff", "--name-only", f"origin/{base_ref}...HEAD"])
     return [line for line in diff.splitlines() if line.strip()]
 
+
 def parse_deadline(deadline_str: str) -> datetime:
     # "YYYY-MM-DD HH:MM" in America/Chicago
     return datetime.strptime(deadline_str, "%Y-%m-%d %H:%M").replace(tzinfo=TZ)
+
 
 def get_pr_updated_time() -> datetime | None:
     """
@@ -113,7 +124,8 @@ def days_late(submitted_at: datetime, deadline: datetime) -> int:
     delta = submitted_at - deadline
     if delta.total_seconds() <= 0:
         return 0
-    return (delta.days + 1)
+    return delta.days + 1
+
 
 def apply_late_policy(
     *,
@@ -136,7 +148,7 @@ def apply_late_policy(
             messages.append(f"{lab}: on time")
 
         elif dlate <= 7:
-            penalty = dlate  
+            penalty = dlate
             deduction += penalty
             messages.append(f"{lab}: {dlate} day(s) late → -{penalty}")
 
@@ -152,6 +164,7 @@ def apply_late_policy(
         messages.append("✅ No late deduction applied")
 
     return final_score, messages
+
 
 def main() -> None:
     base_ref = os.environ.get("BASE_REF", "main")
@@ -237,10 +250,10 @@ def main() -> None:
     tests_to_run = [LAB_TO_TEST[lab] for lab in sorted(labs_touched)]
     cmd = ["pytest", "-q", *tests_to_run, "--timeout=5"]
     p = subprocess.run(cmd, cwd=REPO_ROOT, env=env, text=True)
-    if p.returncode >1:
-      sys.exit(p.returncode)
+    if p.returncode > 1:
+        sys.exit(p.returncode)
 
-   # 6) Apply late policy
+    # 6) Apply late policy
 
     if not results_file.exists():
         print(f"Could not find results file: {results_file}")
