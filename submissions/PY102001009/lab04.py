@@ -14,6 +14,12 @@ def preorder(root):
     return [root.value] + preorder(root.left) + preorder(root.right)
 
 
+def preorder_iter(root):
+    if not root:
+        return []
+    return [root] + preorder_iter(root.left) + preorder_iter(root.right)
+
+
 def inorder(root):
     if not root:
         return []
@@ -70,6 +76,8 @@ def build_submission_tree(base_path: str, folder1: str, folder2: str) -> TreeNod
     │   ├── autograder_results.json
     │   │   ├── lab02.py
     │   │   ├── lab03.py
+
+
     """
 
     root = TreeNode(base_path)
