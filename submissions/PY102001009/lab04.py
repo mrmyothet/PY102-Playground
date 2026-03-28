@@ -14,12 +14,6 @@ def preorder(root):
     return [root.value] + preorder(root.left) + preorder(root.right)
 
 
-def preorder_iter(root):
-    if not root:
-        return []
-    return [root] + preorder_iter(root.left) + preorder_iter(root.right)
-
-
 def inorder(root):
     if not root:
         return []
@@ -68,8 +62,6 @@ def build_submission_tree(base_path: str, folder1: str, folder2: str) -> TreeNod
     └── PY102001012
         ├── lab02.py
         ├── lab03.py
-
-
     """
 
     root = TreeNode(base_path)
@@ -109,6 +101,7 @@ def print_all_nodes(root: TreeNode) -> None:
     Traverse the tree and print the value stored in EVERY node.
     root: the TreeNode returned from build_submission_tree
     """
+
     for value in preorder(root):
         print(value)
 
@@ -133,6 +126,7 @@ def find_py_files(root: TreeNode) -> list[str]:
     Traverse the tree and return a list of all '.py' files.
     root: the TreeNode returned from build_submission_tree
     """
+
     py_files_lst = []
     folder_path = ""
 
@@ -181,11 +175,9 @@ def test_find_py_files():
     print()
     print("py_files")
     print(py_files)
-    # print("=" * 100)
 
     print("expected_files")
     print(expected_files)
-    # print("=" * 100)
 
     assert sorted(py_files) == sorted(expected_files)
 
@@ -195,11 +187,6 @@ def main() -> None:
     test_build_submission_tree()
 
     root_node = build_submission_tree("submissions", "PY102001009", "PY102001012")
-
-    # print("=" * 100)
-    # print("print_all_nodes")
-    # print_all_nodes(root_node)
-    # print("=" * 100)
 
     test_print_all_nodes()
 
