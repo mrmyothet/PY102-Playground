@@ -45,8 +45,21 @@ def height(root):
 
 
 def _build(nums: List[int], left: int, right: int):
-    # TODO
-    raise NotImplementedError("Implement Q1 here.")
+    # Base case: if the left index exceeds the right, there are no elements to process
+    if left > right:
+        return None
+
+    # Find the middle index to ensure the tree is height-balanced
+    mid = (left + right) // 2
+
+    # Create the root node for the current subarray
+    node = TreeNode(nums[mid])
+
+    # Recursively build the left and right subtrees
+    node.left = _build(nums, left, mid - 1)
+    node.right = _build(nums, mid + 1, right)
+
+    return node
 
 
 def sorted_array_to_bst(nums: List[int]) -> Optional[TreeNode]:
