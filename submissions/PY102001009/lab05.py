@@ -45,8 +45,17 @@ def height(root):
 
 
 def _build(nums: List[int], left: int, right: int):
-    # TODO
-    raise NotImplementedError("Implement Q1 here.")
+    if left > right:
+        return None
+
+    mid = (left + right) // 2
+
+    node = TreeNode(nums[mid])
+
+    node.left = _build(nums, left, mid - 1)
+    node.right = _build(nums, mid + 1, right)
+
+    return node
 
 
 def sorted_array_to_bst(nums: List[int]) -> Optional[TreeNode]:
@@ -70,8 +79,13 @@ def sorted_array_to_bst(nums: List[int]) -> Optional[TreeNode]:
 
 
 def insert_bst(root: Optional[TreeNode], value: int):
-    # TODO
-    raise NotImplementedError("Implement Q2 here.")
+    if root is None:
+        return TreeNode(value)
+    if value < root.value:
+        root.left = insert_bst(root.left, value)
+    if value > root.value:
+        root.right = insert_bst(root.right, value)
+    return root
 
 
 # ------------------------------------------------------------
@@ -101,5 +115,13 @@ def build_class_bst():
     init_id = 1001
     num_stus = 6
     nums = [init_id + k for k in range(num_stus)]
-    # TODO
-    raise NotImplementedError("Implement Q3 here.")
+
+    root = sorted_array_to_bst(nums)
+    additional_ids = [1007, 1008]
+
+    for id in additional_ids:
+        root = insert_bst(root, id)
+
+    print_all_nodes(root)
+
+    print("Max possible iterations to search a student id:", height(root))
