@@ -3,28 +3,41 @@
   "max": 20,
   "details": [
     {
-      "nodeid": "autograder/tests/test_lab04.py::test_q1_build_submission_tree",
+      "nodeid": "autograder/tests/test_lab06.py::test_q1_basic",
       "outcome": "passed",
-      "points": 6,
-      "max_points": 6
+      "points": 3,
+      "max_points": 3
     },
     {
-      "nodeid": "autograder/tests/test_lab04.py::test_q2_print_all_nodes",
+      "nodeid": "autograder/tests/test_lab06.py::test_q1_level1",
       "outcome": "passed",
-      "points": 7,
-      "max_points": 7
+      "points": 4,
+      "max_points": 4
     },
     {
-      "nodeid": "autograder/tests/test_lab04.py::test_q3_find_py_files",
+      "nodeid": "autograder/tests/test_lab06.py::test_q2_basic",
       "outcome": "passed",
-      "points": 7,
-      "max_points": 7
+      "points": 3,
+      "max_points": 3
+    },
+    {
+      "nodeid": "autograder/tests/test_lab06.py::test_q2_level2",
+      "outcome": "passed",
+      "points": 5,
+      "max_points": 5
+    },
+    {
+      "nodeid": "autograder/tests/test_lab06.py::test_q3_basic",
+      "outcome": "passed",
+      "points": 2,
+      "max_points": 2
+    },
+    {
+      "nodeid": "autograder/tests/test_lab06.py::test_q3_level1",
+      "outcome": "passed",
+      "points": 3,
+      "max_points": 3
     }
   ],
-  "student_dir": "C:\\repos\\mmdt\\PY102\\Playground\\PY102-Playground\\submissions\\PY102001009",
-  "final_score": 20,
-  "submitted_at": null,
-  "late_messages": [
-    "\u26a0\ufe0f Could not read PR timestamp; no late penalty applied."
-  ]
+  "student_dir": "C:\\repos\\mmdt\\PY102\\Playground\\PY102-Playground\\submissions\\PY102001009"
 }
